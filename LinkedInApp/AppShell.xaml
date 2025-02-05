@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="LinkedInApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:core="clr-namespace:LinkedInApp.View"
+    Shell.FlyoutBehavior="Disabled"
+    Title="LinkedInApp">
+    
+
+    <TabBar>
+        <Tab Title="Home"  >
+            <ShellContent ContentTemplate="{DataTemplate core:HomePage}" />
+        </Tab>
+
+        <Tab Title="Jobs">
+            <ShellContent>
+                <ContentPage Title="Jobs" BackgroundColor="SkyBlue">
+                    <ScrollView>
+                        <StackLayout Padding="16">
+                            <!-- Search Bar -->
+                            <Frame BorderColor="#E0E0E0" Padding="1" CornerRadius="3" Margin="0,0,0,15" BackgroundColor="AliceBlue">
+                                <Grid ColumnDefinitions="Auto,*">
+                                    <Image Source="icon.jpg" HeightRequest="20" Grid.Column="0" />
+                                    <Entry Placeholder="Search jobs" Grid.Column="1" Margin="8,0,0,0" TextColor="Black"/>
+                                </Grid>
+                            </Frame>
+
+                            <!-- Jobs List -->
+                            <CollectionView>
+                                <CollectionView.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Software Engineer - Google</x:String>
+                                        <x:String>Product Manager - Apple</x:String>
+                                        <x:String>Data Scientist - Amazon</x:String>
+                                        <x:String>UX Designer - Adobe</x:String>
+                                    </x:Array>
+                                </CollectionView.ItemsSource>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame BorderColor="#E0E0E0" Margin="0,0,0,12" Padding="16" CornerRadius="8" BackgroundColor="SkyBlue">
+                                            <StackLayout>
+                                                <Grid ColumnDefinitions="Auto,*,Auto">
+                                                    <Frame HeightRequest="60" WidthRequest="60" CornerRadius="8" 
+                   BackgroundColor="White" BorderColor="#E0E0E0" Grid.Column="0"
+                   IsClippedToBounds="True">
+                                                        <Image Aspect="AspectFit" BackgroundColor="White">
+                                                            <Image.Triggers>
+                                                                <DataTrigger TargetType="Image"
+                                    Binding="{Binding .}"
+                                    Value="Software Engineer - Google">
+                                                                    <Setter Property="Source" Value="google.png"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger TargetType="Image"
+                                    Binding="{Binding .}"
+                                    Value="Product Manager - Apple">
+                                                                    <Setter Property="Source" Value="apple.png"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger TargetType="Image"
+                                    Binding="{Binding .}"
+                                    Value="Data Scientist - Amazon">
+                                                                    <Setter Property="Source" Value="amazon.png"/>
+                                                                </DataTrigger>
+                                                                <DataTrigger TargetType="Image"
+                                    Binding="{Binding .}"
+                                    Value="UX Designer - Adobe">
+                                                                    <Setter Property="Source" Value="adobe.png"/>
+                                                                </DataTrigger>
+                                                            </Image.Triggers>
+                                                        </Image>
+                                                    </Frame>
+                                                    <StackLayout Grid.Column="1" Margin="12,0,0,0">
+                                                        <Label Text="{Binding .}" FontAttributes="Bold" FontSize="16" TextColor="Black"/>
+                                                        <Label Text="Cape Town, SA• Remote" TextColor="#666" FontSize="14"/>
+                                                        <Label Text="Posted 2 days ago • 100+ applicants" TextColor="#666" FontSize="12"/>
+                                                    </StackLayout>
+                                                    
+                                                </Grid>
+
+                                                <BoxView Color="#E0E0E0" HeightRequest="1" Margin="0,12"/>
+
+                                                <Label Text="Full-time • Senior level • 401(k) " 
+                                               TextColor="#666" FontSize="14"/>
+
+                                                <Button Text="Save" 
+                                                BackgroundColor="#0A66C2" 
+                                                TextColor="White"
+                                                CornerRadius="20"
+                                                Margin="0,12,0,0"
+                                                HeightRequest="40"/>
+                                                <Button Text="Easy Apply" 
+ BackgroundColor="#0A66C2" 
+ TextColor="White"
+ CornerRadius="20"
+ Margin="0,12,0,0"
+ HeightRequest="40"/>
+                                            </StackLayout>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </ScrollView>
+                </ContentPage>
+            </ShellContent>
+        </Tab>
+
+
+        <Tab Title="Notifications">
+            <ShellContent>
+                <ContentPage Title="Notifications" BackgroundColor="SkyBlue" >
+                    <ScrollView>
+                        <StackLayout Padding="16">
+                            <CollectionView>
+                                <CollectionView.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>New connection request from John Doe</x:String>
+                                        <x:String>You have a new message from Jane Smith</x:String>
+                                        <x:String>Your job application was viewed</x:String>
+                                        <x:String>Your post got 10 likes!</x:String>
+                                    </x:Array>
+                                </CollectionView.ItemsSource>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame BorderColor="#E0E0E0" Margin="0,0,0,10" Padding="12" CornerRadius="8" BackgroundColor="SkyBlue">
+                                            <Grid ColumnDefinitions="Auto,*,Auto">
+                                                <Frame HeightRequest="40" WidthRequest="40" CornerRadius="20" 
+                                               BackgroundColor="#E1F3FF" Grid.Column="0">
+                                                    
+                                                </Frame>
+                                                <StackLayout Grid.Column="1" Margin="12,0,0,0">
+                                                    <Label Text="{Binding .}" FontSize="15" TextColor="Black"/>
+                                                    <Label Text="1h ago" TextColor="#666" FontSize="13" Margin="0,4,0,0"/>
+                                                </StackLayout>
+                                                <Button Text="•••" 
+                                                BackgroundColor="Transparent"
+                                                TextColor="#666"
+                                                Grid.Column="2"/>
+                                            </Grid>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </ScrollView>
+                </ContentPage>
+            </ShellContent>
+        </Tab>
+
+        <!-- New Tab: My Network -->
+        <Tab Title="My Network" >
+            <ShellContent>
+                <ContentPage Title="My Network" BackgroundColor="SkyBlue" >
+                    <ScrollView>
+                        <StackLayout Padding="16">
+                            <!-- Header -->
+                            <Frame BackgroundColor="SkyBlue" Padding="10" CornerRadius="8" Margin="0,0,0,15">
+                                <StackLayout>
+                                    <Label Text="Your Network" TextColor="Black" FontSize="24" FontAttributes="Bold"/>
+                                    <Label Text="100+ connections" TextColor="Black" FontSize="16"/>
+                                </StackLayout>
+                            </Frame>
+
+                            <!-- Network Growth -->
+                            <Frame BorderColor="#E0E0E0" Padding="15" CornerRadius="8" Margin="0,0,0,15" BackgroundColor="SkyBlue">
+                                <StackLayout>
+                                    <Label Text="Network Growth" FontSize="18" FontAttributes="Bold" Margin="0,0,0,10" TextColor="Black"/>
+                                    <Label Text="12 new connections this week" TextColor="#666"/>
+                                </StackLayout>
+                            </Frame>
+
+                            <!-- Connections List -->
+                            <Label Text="Your Connections" FontSize="18" FontAttributes="Bold" Margin="0,0,0,10" TextColor="Black"/>
+                            <CollectionView>
+                                <CollectionView.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>John Doe</x:String>
+                                        <x:String>Jane Smith</x:String>
+                                        <x:String>Michael Brown</x:String>
+                                        <x:String>Emily Davis</x:String>
+                                    </x:Array>
+                                </CollectionView.ItemsSource>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Frame BorderColor="#E0E0E0" Margin="0,0,0,10" Padding="10" CornerRadius="8" BackgroundColor="SkyBlue">
+                                            <Grid ColumnDefinitions="Auto,*,Auto">
+                                                <Frame HeightRequest="50" WidthRequest="50" CornerRadius="25" 
+                                               BackgroundColor="Transparent" Grid.Column="0">
+                                                    <Image Source="profile_placeholder.png"/>
+                                                </Frame >
+                                                <StackLayout Grid.Column="1" Margin="10,0,0,0" VerticalOptions="Center" >
+                                                    <Label Text="{Binding .}" FontAttributes="Bold"/>
+                                                    <Label Text="Software Engineer at Tech Corp" TextColor="Black" FontSize="14" />
+                                                    
+                                                </StackLayout>
+                                                <Button Text="Message" 
+                                                BackgroundColor="#0A66C2" 
+                                                TextColor="Black"
+                                                CornerRadius="20"
+                                                Padding="2,3"
+                                                Grid.Column="2"/>
+                                            </Grid>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </ScrollView>
+                </ContentPage>
+            </ShellContent>
+        </Tab>
+    </TabBar>
+
+</Shell>

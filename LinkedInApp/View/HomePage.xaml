@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:LinkedInApp.ViewModel"
+             x:Class="LinkedInApp.View.HomePage"
+             BackgroundColor="SkyBlue">
+    
+
+    <ContentPage.BindingContext>
+        <vm:HomePageViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" >
+       
+                <!-- Post Feed -->
+            <Label Text="Recent Posts" 
+       FontSize="20" 
+       Padding="16,20,16,12" 
+       TextColor="#1B1F23"
+       FontAttributes="Bold"/>
+
+            <CollectionView ItemsSource="{Binding Posts}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="#E0E0E0" 
+                   BackgroundColor="White"
+                   CornerRadius="8" 
+                   Margin="16,0,16,12" 
+                   Padding="16"
+                   HasShadow="False">
+                            <VerticalStackLayout Spacing="12">
+                                <!-- Author Info -->
+                                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                                    <Frame HeightRequest="48" 
+                               WidthRequest="48" 
+                               CornerRadius="24" 
+                               Padding="0" 
+                               IsClippedToBounds="True"
+                               BorderColor="#E0E0E0">
+                                        <Image Source="khangwelo.jpg" 
+                                   Aspect="AspectFill"/>
+                                    </Frame>
+                                    <VerticalStackLayout Grid.Column="1" 
+                                           Spacing="2">
+                                        <Label Text="{Binding Author}" 
+                                   FontAttributes="Bold" 
+                                   FontSize="16"
+                                   TextColor="#1B1F23"/>
+                                        <Label Text="{Binding JobTitle}" 
+                                   FontSize="14" 
+                                   TextColor="#666"/>
+                                        <Label Text="{Binding TimePosted}" 
+                                   FontSize="12" 
+                                   TextColor="#666"/>
+                                    </VerticalStackLayout>
+                                    <Button Text="•••" 
+                                Grid.Column="2"
+                                BackgroundColor="Transparent"
+                                TextColor="#666"/>
+                                </Grid>
+
+                                <!-- Post Content -->
+                                <Label Text="{Binding Content}" 
+                           FontSize="15" 
+                           TextColor="#1B1F23"
+                           LineHeight="1.4"/>
+
+                                <!-- Post Image -->
+                                <Frame IsClippedToBounds="True" 
+                           Padding="0" 
+                           BorderColor="#E0E0E0"
+                           CornerRadius="8"
+                           HeightRequest="300">
+                                    <Image Source="{Binding Image}" 
+                               Aspect="AspectFill"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="FillAndExpand"/>
+                                </Frame>
+
+                                <!-- Engagement Stats -->
+                                <Grid ColumnDefinitions="*,Auto" 
+                          Padding="0,4">
+                                    <Label Grid.Column="0">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding LikeCount}" 
+                                          TextColor="#666"/>
+                                                <Span Text=" likes • " 
+                                          TextColor="#666"/>
+                                                <Span Text="{Binding CommentCount}" 
+                                          TextColor="#666"/>
+                                                <Span Text=" comments" 
+                                          TextColor="#666"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </Grid>
+
+                                <BoxView Color="#E0E0E0" 
+                             HeightRequest="1"/>
+
+                                <!-- Action Buttons -->
+                                <Grid ColumnDefinitions="*,*,*,*" 
+                          ColumnSpacing="8">
+                                    <Button Grid.Column="0"
+                                Text="👍 Like" 
+                                BackgroundColor="Transparent"
+                                TextColor="#666"/>
+                                    <Button Grid.Column="1"
+                                Text="💬 Comment" 
+                                BackgroundColor="Transparent"
+                                TextColor="#666"/>
+                                    <Button Grid.Column="2"
+                                Text="🔄 Repost" 
+                                BackgroundColor="Transparent"
+                                TextColor="#666"/>
+                                    <Button Grid.Column="3"
+                                Text="✉️ Send" 
+                                BackgroundColor="Transparent"
+                                TextColor="#666"/>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
